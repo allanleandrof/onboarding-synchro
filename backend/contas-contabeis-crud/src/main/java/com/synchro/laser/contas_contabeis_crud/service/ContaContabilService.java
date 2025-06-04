@@ -49,4 +49,12 @@ public class ContaContabilService {
         return contaContabilRepository.findAll();
     }
 
+    public void deleteById(String contaId) {
+        var id = UUID.fromString(contaId);
+
+        if (contaContabilRepository.existsById(id)) {
+            contaContabilRepository.deleteById(id);
+        }
+    }
+
 }

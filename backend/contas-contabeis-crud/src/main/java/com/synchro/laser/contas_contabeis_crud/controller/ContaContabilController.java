@@ -42,4 +42,11 @@ public class ContaContabilController {
     public ResponseEntity<List<ContaContabil>> listContas(){
         return ResponseEntity.ok(contaContabilService.listContas());
     }
+
+    @DeleteMapping("/{contaId}")
+    public ResponseEntity<Void> deleteById(@PathVariable String contaId){
+        contaContabilService.deleteById(contaId);
+
+        return ResponseEntity.noContent().build();
+    }
 }
