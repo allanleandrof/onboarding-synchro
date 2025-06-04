@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/conta")
@@ -37,4 +38,8 @@ public class ContaContabilController {
         return conta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping
+    public ResponseEntity<List<ContaContabil>> listContas(){
+        return ResponseEntity.ok(contaContabilService.listContas());
+    }
 }
