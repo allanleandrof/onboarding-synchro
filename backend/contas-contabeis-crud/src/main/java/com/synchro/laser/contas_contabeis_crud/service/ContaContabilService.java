@@ -1,6 +1,7 @@
 package com.synchro.laser.contas_contabeis_crud.service;
 
 import com.synchro.laser.contas_contabeis_crud.dto.CreateContaDto;
+import com.synchro.laser.contas_contabeis_crud.dto.UpdateContaDto;
 import com.synchro.laser.contas_contabeis_crud.model.entities.ContaContabil;
 import com.synchro.laser.contas_contabeis_crud.repository.ContaContabilRepository;
 import com.synchro.laser.contas_contabeis_crud.repository.HistoricoMovimentacaoRepository;
@@ -54,6 +55,34 @@ public class ContaContabilService {
 
         if (contaContabilRepository.existsById(id)) {
             contaContabilRepository.deleteById(id);
+        }
+    }
+
+    public void updateContaById(String contaId, UpdateContaDto updateContaDto) {
+        var id = UUID.fromString(contaId);
+
+        var contaEntity = contaContabilRepository.findById(id);
+
+        if (contaEntity.isPresent()) {
+            var conta = contaEntity.get();
+
+            if (updateContaDto.nome() != null) {
+                conta.setNome(updateContaDto.nome());
+            }
+
+            if (updateContaDto.tipo() != null) {
+                conta.setTipo(updateContaDto.tipo());
+            }
+
+            if (updateContaDto.saldo() != null) {
+                conta.setSaldo(updateContaDto.saldo());
+            }
+
+            if (updateContaDto.ativo() != null) {
+                conta.setAtivo(updateContaDto.ativo());
+            }
+
+            contaContabilRepository.save(conta);
         }
     }
 

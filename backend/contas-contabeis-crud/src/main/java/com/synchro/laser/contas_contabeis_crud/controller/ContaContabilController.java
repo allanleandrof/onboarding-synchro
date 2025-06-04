@@ -1,6 +1,7 @@
 package com.synchro.laser.contas_contabeis_crud.controller;
 
 import com.synchro.laser.contas_contabeis_crud.dto.CreateContaDto;
+import com.synchro.laser.contas_contabeis_crud.dto.UpdateContaDto;
 import com.synchro.laser.contas_contabeis_crud.model.entities.ContaContabil;
 import com.synchro.laser.contas_contabeis_crud.service.ContaContabilService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,13 @@ public class ContaContabilController {
     public ResponseEntity<Void> deleteById(@PathVariable String contaId){
         contaContabilService.deleteById(contaId);
 
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{contaId}")
+    public ResponseEntity<Void> updateContaById(@PathVariable String contaId,
+                                               @RequestBody UpdateContaDto updateContaDto) {
+        contaContabilService.updateContaById(contaId, updateContaDto);
         return ResponseEntity.noContent().build();
     }
 }
