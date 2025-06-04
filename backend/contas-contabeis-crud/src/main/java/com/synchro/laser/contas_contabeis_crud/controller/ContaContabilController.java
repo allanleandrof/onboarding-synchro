@@ -5,10 +5,7 @@ import com.synchro.laser.contas_contabeis_crud.model.entities.ContaContabil;
 import com.synchro.laser.contas_contabeis_crud.service.ContaContabilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -30,6 +27,14 @@ public class ContaContabilController {
 
         return ResponseEntity.created(URI.create("/conta/" + conta.getId()))
                 .body(conta);
+    }
+
+    @GetMapping("/{contaId}")
+    public ResponseEntity<ContaContabil> getContasById(@PathVariable String contaId){
+
+        var conta = contaContabilService.getContasById(contaId);
+
+        return conta.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

@@ -7,6 +7,9 @@ import com.synchro.laser.contas_contabeis_crud.repository.HistoricoMovimentacaoR
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class ContaContabilService {
 
@@ -34,6 +37,11 @@ public class ContaContabilService {
                 .build();
 
         return contaContabilRepository.save(entity);
+    }
+
+    public Optional<ContaContabil> getContasById(String contaId){
+
+        return contaContabilRepository.findById(UUID.fromString(contaId));
     }
 
 }
