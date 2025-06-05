@@ -17,11 +17,11 @@ export const contaAPI = {
   
   getById: (id) => api.get(`/${id}`),
   
-  getAll: () => api.get('/'),
+  getAll: () => api.get('/conta'),
   
   update: (id, data) => api.put(`/${id}`, data),
   
-  delete: (id) => api.delete(`/${id}`)
+  delete: (id) => api.delete(`conta/${id}`)
 };
 
 export default api;
