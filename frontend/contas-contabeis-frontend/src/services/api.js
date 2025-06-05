@@ -15,13 +15,13 @@ export const contaAPI = {
   
   create: (data) => api.post('/conta', data),
   
-  getById: (id) => api.get(`/${id}`),
+  getById: (id) => api.get(`/conta/${id}`),
   
   getAll: () => api.get('/conta'),
   
-  update: (id, data) => api.put(`/${id}`, data),
+  update: (id, data) => api.put(`/conta/${id}`, data),
   
-  delete: (id) => api.delete(`conta/${id}`)
+  delete: (id) => api.delete(`/conta/${id}`)
 };
 
 export default api;

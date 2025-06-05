@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Table, Button, Alert, Badge, Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { contaAPI } from '../services/api';
 
 function ListPage() {
@@ -65,14 +66,14 @@ function ListPage() {
     <Container className='mt-4'>
       <div className='d-flex justify-content-between align-items-center mb-4'>
         <h1>Lista de Contas</h1>
-        <Button variant='success' href='/create'>
+        <Button variant='success' href='/criar'>
           Nova Conta
         </Button>
       </div>
 
       {contas.length === 0 ? (
         <Alert variant='info'>
-          Nenhuma conta cadastrada. <a href='/create'>Criar primeira conta</a>
+          Nenhuma conta cadastrada. <a href='/criar'>Criar primeira conta</a>
         </Alert>
       ) : (
         <Table striped bordered hover responsive>
@@ -107,7 +108,8 @@ function ListPage() {
                     variant='outline-primary' 
                     size='sm' 
                     className='me-2'
-                    href={`/editar/${conta.id}`}
+                    as={Link}
+                    to={`/editar/${conta.id}`}
                   >
                     Editar
                   </Button>

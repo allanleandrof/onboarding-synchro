@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import CreatePage from './pages/CreatePage';
 import ListPage from './pages/ListPage';
+import EditPage from './pages/EditPage';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/create" element={<CreatePage />} />
           <Route path="/list" element={<ListPage />} />
+          <Route path="/editar/:id" element={<EditPage />} />
         </Routes>
       </Layout>
     </Router>
