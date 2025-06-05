@@ -8,13 +8,18 @@ function NavbarComponent() {
       <Container>
         <Navbar.Brand>
           <Link to="/" className="text-white text-decoration-none">
-            💼 Sistema de Contas Contábeis
+            <img 
+              src="/casa.png" 
+              alt="Logo" 
+              width="25" 
+              height="25"
+            />
           </Link>
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Nav.Link>
               <Link to="/create" className="text-light text-decoration-none">
                 ➕ Criar

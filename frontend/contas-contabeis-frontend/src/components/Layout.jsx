@@ -8,15 +8,13 @@ function Layout({ children }) {
       {/* Navbar */}
       <NavbarComponent />
       
-      {/* Conteúdo principal */}
       <Container className="py-4">
         {children}
       </Container>
       
-      {/* Footer simples */}
       <footer className="bg-light text-center py-3 mt-5">
         <small className="text-muted">
-          Sistema CRUD de Contas Contábeis - React + Spring Boot
+         © 2025 Sistema de gerenciamento  |  Synchro Soluções fiscais
         </small>
       </footer>
     </div>
