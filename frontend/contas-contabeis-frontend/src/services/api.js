@@ -24,4 +24,8 @@ export const contaAPI = {
   delete: (id) => api.delete(`/conta/${id}`)
 };
 
+export const historicoAPI = {
+  getAll: () => api.get('/historico')
+};
+
 export default api;

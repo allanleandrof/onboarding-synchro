@@ -116,16 +116,7 @@ function HomePage() {
           </Card>
         </Col>
       </Row>
-
-      <div className="text-center">
-        <h4 className="mb-3">Ações Rápidas</h4>
-        <Link to="/create" className="btn btn-primary me-3">
-          Nova Conta
-        </Link>
-        <Link to="/list" className="btn btn-outline-primary">
-          Ver Todas
-        </Link>
-      </div>
+      
     </div>
   );
 }

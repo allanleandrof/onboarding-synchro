@@ -32,6 +32,12 @@ function NavbarComponent() {
               </Link>
             </Nav.Link>
 
+            <Nav.Link>
+              <Link to="/historico" className="text-light text-decoration-none">
+                Historico de operações
+              </Link>
+            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>
