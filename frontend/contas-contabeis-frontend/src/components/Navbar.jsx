@@ -22,33 +22,16 @@ function NavbarComponent() {
           <Nav className="ms-auto">
             <Nav.Link>
               <Link to="/create" className="text-light text-decoration-none">
-                ➕ Criar
-              </Link>
-            </Nav.Link>
-            
-            <Nav.Link>
-              <Link to="/search" className="text-light text-decoration-none">
-                🔍 Buscar
+                Adiciona conta
               </Link>
             </Nav.Link>
             
             <Nav.Link>
               <Link to="/list" className="text-light text-decoration-none">
-                📋 Listar
+                Lista contas
               </Link>
             </Nav.Link>
-            
-            <Nav.Link>
-              <Link to="/update" className="text-light text-decoration-none">
-                ✏️ Atualizar
-              </Link>
-            </Nav.Link>
-            
-            <Nav.Link>
-              <Link to="/delete" className="text-light text-decoration-none">
-                🗑️ Excluir
-              </Link>
-            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

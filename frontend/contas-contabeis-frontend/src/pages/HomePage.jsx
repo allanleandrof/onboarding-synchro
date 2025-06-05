@@ -59,8 +59,8 @@ function HomePage() {
   return (
     <div>
       <div className="text-center mb-5">
-        <h1>Dashboard - Contas Contábeis</h1>
-        <p className="lead">Resumo geral do sistema</p>
+        <h1>Sistema gerenciador de Contas Contábeis</h1>
+        <p className="lead">Resumo geral</p>
       </div>
 
       <Row className="mb-4">
