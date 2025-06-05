@@ -42,13 +42,15 @@ public class ContaContabilService {
                 .ativo(createContaDto.ativo())
                 .build();
 
+        var contaSalva = contaContabilRepository.save(entity);
+
         BigDecimal valorAnt = BigDecimal.valueOf(0);
         HistoricoMovimentacao.TipoOperacao operacao = HistoricoMovimentacao.TipoOperacao.valueOf("CRIACAO");
 
-        historicoMovimentacaoService.createMovimentacao(entity, operacao, "Conta"
-                + entity.getNome() + "criada", valorAnt);
+        historicoMovimentacaoService.createMovimentacao(contaSalva, operacao, "Conta "
+                + contaSalva.getNome() + " criada", valorAnt);
 
-        return contaContabilRepository.save(entity);
+        return contaSalva;
     }
 
     public Optional<ContaContabil> getContasById(String contaId){

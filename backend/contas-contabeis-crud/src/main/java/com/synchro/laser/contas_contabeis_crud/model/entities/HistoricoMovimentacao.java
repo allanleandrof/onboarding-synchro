@@ -27,6 +27,7 @@ public class HistoricoMovimentacao {
     private ContaContabil conta;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 30)
     private TipoOperacao operacao; // CRIACAO, ALTERACAO, EXCLUSAO
 
     @Column(length = 500)
