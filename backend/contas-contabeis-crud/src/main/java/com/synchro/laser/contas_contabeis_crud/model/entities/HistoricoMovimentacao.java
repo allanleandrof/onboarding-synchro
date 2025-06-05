@@ -42,6 +42,6 @@ public class HistoricoMovimentacao {
     private LocalDateTime dataOperacao;
 
     public enum TipoOperacao {
-        ATIVO, PASSIVO, RECEITA, DESPESA
+        CRIACAO, ALTERACAO, EXCLUSAO
     }
 }

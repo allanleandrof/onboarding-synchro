@@ -3,11 +3,13 @@ package com.synchro.laser.contas_contabeis_crud.service;
 import com.synchro.laser.contas_contabeis_crud.dto.CreateContaDto;
 import com.synchro.laser.contas_contabeis_crud.dto.UpdateContaDto;
 import com.synchro.laser.contas_contabeis_crud.model.entities.ContaContabil;
+import com.synchro.laser.contas_contabeis_crud.model.entities.HistoricoMovimentacao;
 import com.synchro.laser.contas_contabeis_crud.repository.ContaContabilRepository;
 import com.synchro.laser.contas_contabeis_crud.repository.HistoricoMovimentacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,11 +19,13 @@ public class ContaContabilService {
 
     private final ContaContabilRepository contaContabilRepository;
     private final HistoricoMovimentacaoRepository historicoMovimentacaoRepository;
+    private final HistoricoMovimentacaoService historicoMovimentacaoService;
 
     @Autowired
-    public ContaContabilService(ContaContabilRepository contaContabilRepository, HistoricoMovimentacaoRepository historicoMovimentacaoRepository) {
+    public ContaContabilService(ContaContabilRepository contaContabilRepository, HistoricoMovimentacaoRepository historicoMovimentacaoRepository, HistoricoMovimentacaoService historicoMovimentacaoService) {
         this.contaContabilRepository = contaContabilRepository;
         this.historicoMovimentacaoRepository = historicoMovimentacaoRepository;
+        this.historicoMovimentacaoService = historicoMovimentacaoService;
     }
 
     public ContaContabil createConta(CreateContaDto createContaDto){
@@ -37,6 +41,12 @@ public class ContaContabilService {
                 .saldo(createContaDto.saldo())
                 .ativo(createContaDto.ativo())
                 .build();
+
+        BigDecimal valorAnt = BigDecimal.valueOf(0);
+        HistoricoMovimentacao.TipoOperacao operacao = HistoricoMovimentacao.TipoOperacao.valueOf("CRIACAO");
+
+        historicoMovimentacaoService.createMovimentacao(entity, operacao, "Conta"
+                + entity.getNome() + "criada", valorAnt);
 
         return contaContabilRepository.save(entity);
     }
