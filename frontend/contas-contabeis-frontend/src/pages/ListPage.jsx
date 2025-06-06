@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Table, Button, Alert, Badge, Spinner } from 'react-bootstrap';
+import { Container, Table, Button, Alert, Badge, Spinner, Form, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { contaAPI } from '../services/api';
 
 function ListPage() {
   const [contas, setContas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filtros, setFiltros] = useState({
+    status: 'todas', // 'todas', 'ativas', 'inativas'
+    codigo: ''
+  });
 
   useEffect(() => {
     loadContas();
@@ -28,7 +32,7 @@ function ListPage() {
       try {
         await contaAPI.delete(id);
         console.log('Conta excluída com sucesso!');
-        loadContas(); // Recarrega a lista
+        loadContas();
       } catch (error) {
         console.log('Erro ao excluir conta:', error);
       }
@@ -52,6 +56,32 @@ function ListPage() {
     return variants[tipo] || 'secondary';
   };
 
+  // Filtrar contas
+  const contasFiltradas = contas.filter(conta => {
+    const filtroStatus = filtros.status === 'todas' || 
+                        (filtros.status === 'ativas' && conta.ativo) ||
+                        (filtros.status === 'inativas' && !conta.ativo);
+    
+    const filtroCodigo = filtros.codigo === '' || 
+                        conta.codigo.toLowerCase().includes(filtros.codigo.toLowerCase());
+    
+    return filtroStatus && filtroCodigo;
+  });
+
+  const handleFiltroChange = (campo, valor) => {
+    setFiltros(prev => ({
+      ...prev,
+      [campo]: valor
+    }));
+  };
+
+  const limparFiltros = () => {
+    setFiltros({
+      status: 'todas',
+      codigo: ''
+    });
+  };
+
   if (loading) {
     return (
       <Container className='mt-4 text-center'>
@@ -71,9 +101,54 @@ function ListPage() {
         </Button>
       </div>
 
-      {contas.length === 0 ? (
+      {/* Filtros */}
+      <div className='mb-4 p-3 bg-light rounded'>
+        <Row>
+          <Col md={4}>
+            <Form.Group>
+              <Form.Label>Status</Form.Label>
+              <Form.Select 
+                value={filtros.status}
+                onChange={(e) => handleFiltroChange('status', e.target.value)}
+              >
+                <option value="todas">Todas</option>
+                <option value="ativas">Apenas Ativas</option>
+                <option value="inativas">Apenas Inativas</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group>
+              <Form.Label>Código</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Filtrar por código..."
+                value={filtros.codigo}
+                onChange={(e) => handleFiltroChange('codigo', e.target.value)}
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4} className='d-flex align-items-end'>
+            <Button 
+              variant="outline-secondary" 
+              onClick={limparFiltros}
+              disabled={filtros.status === 'todas' && filtros.codigo === ''}
+            >
+              Limpar Filtros
+            </Button>
+          </Col>
+        </Row>
+        <small className='text-muted'>
+          Mostrando {contasFiltradas.length} de {contas.length} contas
+        </small>
+      </div>
+
+      {contasFiltradas.length === 0 ? (
         <Alert variant='info'>
-          Nenhuma conta cadastrada. <a href='/criar'>Criar primeira conta</a>
+          {contas.length === 0 
+            ? <>Nenhuma conta cadastrada. <a href='/criar'>Criar primeira conta</a></>
+            : 'Nenhuma conta encontrada com os filtros aplicados.'
+          }
         </Alert>
       ) : (
         <Table striped bordered hover responsive>
@@ -88,7 +163,7 @@ function ListPage() {
             </tr>
           </thead>
           <tbody>
-            {contas.map((conta) => (
+            {contasFiltradas.map((conta) => (
               <tr key={conta.id}>
                 <td>{conta.codigo}</td>
                 <td>{conta.nome}</td>
