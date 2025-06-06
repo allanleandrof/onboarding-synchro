@@ -74,6 +74,7 @@ public class ContaContabilService {
         var id = UUID.fromString(contaId);
 
         var contaEntity = contaContabilRepository.findById(id);
+        var valorAnt = contaEntity.get().getSaldo();
 
         if (contaEntity.isPresent()) {
             var conta = contaEntity.get();
@@ -94,7 +95,12 @@ public class ContaContabilService {
                 conta.setAtivo(updateContaDto.ativo());
             }
 
+            HistoricoMovimentacao.TipoOperacao operacao = HistoricoMovimentacao.TipoOperacao.valueOf("ALTERACAO");
+
             contaContabilRepository.save(conta);
+
+            historicoMovimentacaoService.createMovimentacao(conta, operacao, "Conta "
+                    + conta.getNome() + " atualizada", valorAnt);
         }
     }
 
