@@ -28,7 +28,7 @@ public class HistoricoMovimentacao {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 30)
-    private TipoOperacao operacao; // CRIACAO, ALTERACAO, EXCLUSAO
+    private TipoOperacao operacao; // CRIACAO, ALTERACAO
 
     @Column(length = 500)
     private String descricao;
@@ -43,6 +43,6 @@ public class HistoricoMovimentacao {
     private LocalDateTime dataOperacao;
 
     public enum TipoOperacao {
-        CRIACAO, ALTERACAO, EXCLUSAO
+        CRIACAO, ALTERACAO
     }
 }
