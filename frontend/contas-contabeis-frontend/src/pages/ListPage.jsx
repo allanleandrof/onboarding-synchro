@@ -96,7 +96,7 @@ function ListPage() {
     <Container className='mt-4'>
       <div className='d-flex justify-content-between align-items-center mb-4'>
         <h1>Lista de Contas</h1>
-        <Button variant='success' href='/criar'>
+        <Button variant='success' href='/create'>
           Nova Conta
         </Button>
       </div>
@@ -146,7 +146,7 @@ function ListPage() {
       {contasFiltradas.length === 0 ? (
         <Alert variant='info'>
           {contas.length === 0 
-            ? <>Nenhuma conta cadastrada. <a href='/criar'>Criar primeira conta</a></>
+            ? <>Nenhuma conta cadastrada. <a href='/create'>Criar primeira conta</a></>
             : 'Nenhuma conta encontrada com os filtros aplicados.'
           }
         </Alert>

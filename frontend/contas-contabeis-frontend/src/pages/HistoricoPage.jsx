@@ -55,7 +55,7 @@ function HistoricoPage() {
 
   return (
     <Container className='mt-4'>
-      <h1 className='mb-4'>Histórico de Movimentações</h1>
+      <h1 className='mb-4'>Histórico de Operações</h1>
 
       {historico.length === 0 ? (
         <div className="text-center">Nenhuma movimentação encontrada.</div>

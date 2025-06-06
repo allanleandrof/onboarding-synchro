@@ -9,7 +9,7 @@ function NavbarComponent() {
         <Navbar.Brand>
           <Link to="/" className="text-white text-decoration-none">
             <img 
-              src="/casa.png" 
+              src="/icons8-casa-24.png" 
               alt="Logo" 
               width="25" 
               height="25"
@@ -22,7 +22,7 @@ function NavbarComponent() {
           <Nav className="ms-auto">
             <Nav.Link>
               <Link to="/create" className="text-light text-decoration-none">
-                Adiciona conta
+                Adicionar
               </Link>
             </Nav.Link>
             
@@ -34,7 +34,7 @@ function NavbarComponent() {
 
             <Nav.Link>
               <Link to="/historico" className="text-light text-decoration-none">
-                Historico de operações
+                Historico
               </Link>
             </Nav.Link>
 
