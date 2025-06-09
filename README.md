@@ -22,7 +22,7 @@ Sistema simples para gerenciar contas contábeis com operações de criação, c
 
 ### 1. Clonar o repositório
 ```bash
-git clone <https://github.com/allanleandrof/onboarding-synchro.git>
+git clone https://github.com/allanleandrof/onboarding-synchro.git
 cd projeto-contas-contabeis
 ```
 
